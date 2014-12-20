@@ -21,4 +21,9 @@ class PartnerUnit extends \Phalcon\Mvc\Model
      */
     public $name;
 
+	public function initialize()
+	{
+		$this->belongsTo('partner_id', 'Partner', 'partner_id');
+	}
+
 }
