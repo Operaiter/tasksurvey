@@ -4,9 +4,9 @@ return new \Phalcon\Config(array(
     'database' => array(
         'adapter'     => 'Mysql',
         'host'        => 'localhost',
-        'username'    => 'root',
-        'password'    => '',
-        'dbname'      => 'test',
+        'username'    => 'sql_tasksurvey',
+        'password'    => 'PXpsCWULBDM4eRJM',
+        'dbname'      => 'tasksurvey',
     ),
     'application' => array(
         'controllersDir' => __DIR__ . '/../../app/controllers/',
@@ -15,6 +15,6 @@ return new \Phalcon\Config(array(
         'pluginsDir'     => __DIR__ . '/../../app/plugins/',
         'libraryDir'     => __DIR__ . '/../../app/library/',
         'cacheDir'       => __DIR__ . '/../../app/cache/',
-        'baseUri'        => '/tasksurvey/',
+        'baseUri'        => '/tasksurvey/tasksurvey/',
     )
 ));
