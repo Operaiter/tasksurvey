@@ -1,0 +1,94 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+    <title>Task Survey</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <style type="text/css">
+        /* Prevent copy paste for all elements except text fields */
+        *  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+        input, textarea  { -webkit-user-select:text; }
+        body { background-color:white; color:black }
+    </style>
+
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile-theme-classic.css">
+    <link rel="stylesheet" href="css/jqm-demos.css">
+
+
+    <script src='intelxdk.js'></script>
+    <script src='js/jquery.js'></script>
+
+    
+    <script src='js/jquery.mobile-1.4.5.js'></script>
+
+    <script type="text/javascript">
+        /* Intel native bridge is available */
+        var onDeviceReady=function(){
+            //hide splash screen
+            intel.xdk.device.hideSplashScreen();
+        };
+        document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+    </script>
+    <script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){
+/* convert ul into listview */
+$("[data-role=panel] ul").listview();
+
+/* external panel is used in the demo
+   therefore, it should be enhanced manually
+   in addition to all contents inside it */
+$("[data-role=panel]").enhanceWithin().panel();
+});//]]>  
+
+</script>
+    
+    
+</head>
+<body>
+
+    
+<div data-role="page" id="main">
+    <div data-role="header"> 
+        <a href="#menu" data-rel="panel" class="ui-btn-right ui-btn ui-btn-icon-right ui-icon-bars  ui-btn-icon-notext ui-corner-all"  data-enhanced="true"></a>
+        <h1>Main</h1>
+    </div>
+</div>
+    
+    
+    
+<div data-role="page" id="login">
+    <div data-role="header">
+        <h1>Login</h1>
+    </div>
+    <div role="main" class="ui-content">
+            <center><img src="./img/logo.png" height="200px" width="200px" /></center><br>
+            <form>
+                <input class="wide-control" placeholder="username" type="text" name="username">
+                <input class="wide-control" placeholder="password" type="text" name="password">
+                <input value="Submit" type="submit">
+            </form>
+    </div>
+</div>
+    
+    
+<div data-role="page" id="overview">
+    <div data-role="header"> <a href="#menu" data-rel="panel" class="ui-btn-left ui-btn ui-btn-icon-left ui-icon-bars">Menu</a>
+
+        <h1>OVerview</h1>
+
+    </div>
+</div>
+    
+    
+<div data-role="panel" class="jqm-navmenu-panel" data-position="right" id="menu" data-display="overlay" data-theme="a">
+    <ul class="jqm-list ui-alt-icon ui-nodisc-icon">
+        <li data-icon="home" data-transition="flip"><a href="#main">Home</a></li>
+        <li><a href="#login" data-transition="flip">Login</a></li>
+        <li><a href="#overview" data-transition="flip">Overview</a></li>
+    </ul>
+</div>
+
+
+</body>
+</html>

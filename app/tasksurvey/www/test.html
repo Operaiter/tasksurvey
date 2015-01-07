@@ -1,0 +1,56 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+    <title>Task Survey</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <style type="text/css">
+        /* Prevent copy paste for all elements except text fields */
+        *  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+        input, textarea  { -webkit-user-select:text; }
+        body { background-color:white; color:black }
+    </style>
+
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile-theme-classic.css">
+    <link rel="stylesheet" href="css/jqm-demos.css">
+
+
+    <script src='intelxdk.js'></script>
+    <script src='js/jquery.js'></script>
+
+    
+    <script src='js/jquery.mobile-1.4.5.js'></script>
+
+    <script type="text/javascript">
+        /* Intel native bridge is available */
+        var onDeviceReady=function(){
+            //hide splash screen
+            intel.xdk.device.hideSplashScreen();
+        };
+        document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+    </script>
+    <script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){
+/* convert ul into listview */
+$("[data-role=panel] ul").listview();
+
+/* external panel is used in the demo
+   therefore, it should be enhanced manually
+   in addition to all contents inside it */
+$("[data-role=panel]").enhanceWithin().panel();
+});//]]>  
+
+</script>
+    
+    
+</head>
+<body>
+
+    <a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Basic Popup</a>
+<div data-role="popup" id="popupBasic">
+<p>This is a completely basic popup, no options set.</p>
+</div>
+    
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html><!--HTML5 doctype-->
+<html>
+<head>
+    <title>Task Survey</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0" />
+    <style type="text/css">
+        /* Prevent copy paste for all elements except text fields */
+        *  { -webkit-user-select:none; -webkit-tap-highlight-color:rgba(255, 255, 255, 0); }
+        input, textarea  { -webkit-user-select:text; }
+        body { background-color:white; color:black }
+    </style>
+
+    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css">
+    <link rel="stylesheet" href="css/jquery.mobile-theme-classic.css">
+    <link rel="stylesheet" href="css/jqm-demos.css">
+
+
+    <script src='intelxdk.js'></script>
+    <script src='js/jquery.js'></script>
+
+    
+    <script src='js/jquery.mobile-1.4.5.js'></script>
+
+    <script type="text/javascript">
+        /* Intel native bridge is available */
+        var onDeviceReady=function(){
+            //hide splash screen
+            intel.xdk.device.hideSplashScreen();
+            console.log("click2");
+
+        };
+        document.addEventListener("intel.xdk.device.ready",onDeviceReady,false);
+
+    </script>
+    <script type='text/javascript'>//<![CDATA[ 
+$(window).load(function(){
+/* convert ul into listview */
+$("[data-role=panel] ul").listview();
+
+/* external panel is used in the demo
+   therefore, it should be enhanced manually
+   in addition to all contents inside it */
+$("[data-role=panel]").enhanceWithin().panel();
+    
+    console.log("click1");
+
+});//]]>  
+
+    $("#loginForm").on("submit",handleLogin);
+
+
+    function checkPreAuth() {
+        var form = $("#loginForm");
+        if(window.localStorage["username"] != undefined && window.localStorage["password"] != undefined) {
+            $("#username", form).val(window.localStorage["username"]);
+            $("#password", form).val(window.localStorage["password"]);
+            handleLogin();
+        }
+    }
+
+    function handleLogin() {
+        var form = $("#loginForm");
+        //disable the button so we can't resubmit while we wait
+        $("#submitButton",form).attr("disabled","disabled");
+        var u = $("#username", form).val();
+        var p = $("#password", form).val();
+        console.log("click");
+        if(u != '' && p!= '') {
+            $.post("http:/perbaunpauleis.de/bla/service.cfc?method=login&returnformat=json", {username:u,password:p}, function(res) {
+                if(res == true) {
+//store
+                    window.localStorage["username"] = u;
+                    window.localStorage["password"] = p;
+                    $.mobile.changePage("some.html");
+                } else {
+                    navigator.notification.alert("Your login failed", function() {});
+                }
+                $("#submitButton").removeAttr("disabled");
+            },"json");
+        } else {
+//Thanks Igor!
+            navigator.notification.alert("You must enter a username and password", function() {});
+            $("#submitButton").removeAttr("disabled");
+        }
+        return false;
+    }
+        
+</script>
+    
+    
+</head>
+<body>
+        
+<div data-role="page" id="login">
+    <div data-role="header">
+        <h1>Login</h1>
+    </div>
+    <div role="main" class="ui-content">
+            <center><img src="./img/logo.png" height="200px" width="200px" /></center><br>
+            <form id="loginForm">
+                <input class="wide-control" placeholder="username" type="text" name="username">
+                <input class="wide-control" placeholder="password" type="text" name="password">
+                <input value="Submit" type="submit">
+            </form>
+    </div>
+</div>
+    
+</body>
+    <script src="http://debug-software.intel.com/target/target-script-min.js"></script>
+</html>
